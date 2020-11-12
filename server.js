@@ -21,10 +21,10 @@ const db = knex({
 
 const app = express();
 
-app.use(cors());
+app.use(cors())
 app.use(bodyParser.json());
 
-app.get('/', (res) => { res.send('it is working!') })
+app.get('/', (req, res) => { res.send('it is working!') })
 
 app.post('/signin', signin.handleSignin(db, bcrypt)(req, res))
 
