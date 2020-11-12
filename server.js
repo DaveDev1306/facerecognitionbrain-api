@@ -24,7 +24,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => { res.send('it is working!') })
+app.get('/', (res) => { res.send('it is working!') })
 
 app.post('/signin', signin.handleSignin(db, bcrypt)(req, res))
 
@@ -35,18 +35,6 @@ app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
 app.put('/image', (req, res) => { image.handleImage(req, res, db)})
 
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res)})
-
-/*bcrypt.hash("bacon", null, null, function(err, hash) {
-
-});
-
-bcrypt.compare("bacon", hash, function(err, res) {
-
-});
-
-bcrypt.hash("veggies", hash, function(err, res) {
-
-}); */
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`app is running on port ${process.env.PORT}`);
